@@ -1,0 +1,133 @@
+<div class="account-login-register">
+  <h1 class="uppercase text-center"><l class="l-en">Login or Create an Account</l><l class="l-it">Login o crea un account</l><l class="l-fr">login ou créez un compte</l></h1>
+  <div class="flex">
+    <div class="cell nth-1">
+      <p class="uppercase w-800"><l class="l-en">New Customers</l><l class="l-it">Nuovi clienti</l><l class="l-fr">nouveaux clients</l></p>
+      <p class="info-register"><l class="l-en">
+        Create your personal account to store your purchases or to save your searches. <br>Make it easy! Save your delivery
+        details for faster shopping. Have exclusive previews of the Latest and promotions.
+      </l>
+        <l class="l-it">Crea il tuo account personale per archiviare i tuoi acquisti o per salvare le tue ricerche. <br>Rendilo più semplice! Salva i dettagli della consegna
+          per fare acquisti più velocemente. Ottieni anteprime esclusive delle ultime novità e promozioni. </l>
+        <l class="l-fr">Créez votre compte personnel pour stocker vos achats ou sauvegarder vos recherches. <br>Simplifiez-vous la vie! Enregistrez vos coordonnées de livraison
+          pour des achats plus rapides. Profitez d'avant-premières exclusives sur les dernières nouveautés et les promotions.</l>
+      </p>
+      <a href="{{ routes.account_register_url }}"><l class="l-en">CREATE AN ACCOUNT</l>
+      <l class="l-it">CREA UN ACCOUNT</l>
+      <l class="l-fr">CREÉR UN COMPTE</l></a>
+    </div>
+    <div class="separator"></div>
+    <div class="cell nth-2">
+      <p class="uppercase w-800"><l class="l-en">Registered Users</l><l class="l-it">UTENTE REGISTRATO</l><l class="l-fr">UTILISATEUR ENREGISTRÉ</l></p>
+      <div class="login-form" x-data="BaselineLogin()" x-init="mounted()">
+        <div :class="{'hidden': state !== 'login'}">
+          {% form 'customer_login', data-login-focus: true, tabindex: '-1' %}
+            {% if form.errors %}
+              <div class="data-login-error" tabindex="-1" data-login-error>{{ form.errors | default_errors }}</div>
+            {% endif %}
+
+            <label class="mt-4 block" for="CustomerEmail" class="label-hidden">
+              {{ 'customer.login.email' | t }}
+            </label>
+            <input
+              type="email"
+              name="customer[email]"
+              id="CustomerEmail"
+              class="w-full py-1 bg-transparent border-b-text border-current {% if form.errors contains 'email' %}border-theme-color{% endif %}"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"
+              {% unless form.errors %}
+                autofocus
+              {% endunless %}
+            >
+
+            {% if form.password_needed %}
+              <label class="mt-4 block" for="CustomerPassword" class="label-hidden">
+                {{ 'customer.login.password' | t }}
+              </label>
+              <input
+                type="password"
+                name="customer[password]"
+                id="CustomerPassword"
+                class="w-full py-1 bg-transparent border-b-text border-current {% if form.errors contains 'password' %}border-theme-color{% endif %}"
+              >
+            {% endif %}
+            <div class="">
+              {% comment %}
+                {%- assign text = 'layout.customer.create_account' | t -%}
+                {%-
+                  render 'link-underline',
+                  section_color: 'primary',
+                  text: text,
+                  link: routes.account_register_url,
+                -%}
+              {% endcomment %}
+              {% if form.password_needed %}
+                <button
+                  @click="state = 'recover'"
+                  type="button"
+                  class=""
+                  href="{{ link }}"
+                >
+                  <span class="{% if settings.links_uppercase %}uppercase{% endif %} reset-password underline">
+                    {{- 'customer.login.forgot_password' | t -}}
+                    {%- if settings.links_show_arrow %}{% endif -%}
+                  </span>
+                </button>
+              {% endif %}
+            </div>
+            <div class="mt-4">
+              <button type="submit" class="btn">{{ 'customer.login.sign_in' | t }}</button>
+            </div>
+          {% endform %}
+        </div>
+
+        <div :class="{'hidden': state !== 'recover'}" x-cloak class="recover-password-block">
+          <div data-login-focus tabindex="-1">
+            {% form 'recover_customer_password' %}
+              {% if form.errors %}
+                <div class="data-login-error" tabindex="-1" data-login-error>{{ form.errors | default_errors }}</div>
+              {% endif %}
+              <h2 class="">{{ 'customer.recover_password.title' | t }}</h2>
+              {% if form.posted_successfully? %}
+                <p data-recover-success>{{ 'customer.recover_password.success' | t }}</p>
+              {% else %}
+                <p>{{ 'customer.recover_password.subtext' | t }}</p>
+                <label for="RecoverEmail" class="mt-4 block">
+                  {{ 'customer.recover_password.email' | t }}
+                </label>
+                <input
+                  type="email"
+                  class="w-full py-1 bg-transparent border-b-text border-current"
+                  name="email"
+                  id="RecoverEmail"
+                  spellcheck="false"
+                  autocomplete="off"
+                  autocapitalize="off"
+                >
+                <div class="mt-4">
+                  <input type="submit" class="btn" value="{{ 'customer.recover_password.submit' | t }}">
+
+                  <button class="return-to-login" type="button" @click="state = 'login'">
+                    {{ 'customer.recover_password.cancel' | t }}
+                  </button>
+                </div>
+              {% endif %}
+            {% endform %}
+          </div>
+        </div>
+
+        {% if shop.checkout.guest_login %}
+          <div class="guest-login-checkout">
+            <h2 class="w-800 uppercase">{{ 'customer.login.guest_title' | t }}</h2>
+
+            {% form 'guest_login' %}
+              <input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+            {% endform %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

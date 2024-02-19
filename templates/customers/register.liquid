@@ -1,0 +1,113 @@
+<div class="account-login-register">
+  <h1 class="uppercase text-center">
+    <l class="l-en">Login or Create an Account</l><l class="l-it">LOGIN O CREA UN ACCOUNT</l
+    ><l class="l-fr">login ou créez un compte</l>
+  </h1>
+  <div class="flex">
+    <div class="cell nth-1">
+      <p class="uppercase w-800">
+        <l class="l-en">I ALREADY HAVE AN ACCOUNT</l><l class="l-it">HO GIÀ UN ACCOUNT</l
+        ><l class="l-fr">J'ai déjà un compte</l>
+      </p>
+      <p class="info-register">
+        <l class="l-en">Insert E-Mail and Password to login and access your reserved area.</l
+        ><l class="l-it"> Inserisci la tua e-mail e password per accedere alla tua area riservata.</l
+        ><l class="l-fr"
+          >Inscrivez votre adresse e-mail et votre mot de passe pour vous connecter et accéder à votre espace réservé.</l
+        >
+      </p>
+      <a href="{{ routes.account_login_url }}">LOGIN</a>
+    </div>
+    <div class="separator"></div>
+    <div class="cell nth-2">
+      <p class="uppercase w-800">
+        <l class="l-en">Create Account</l><l class="l-it">Crea account</l><l class="l-fr">Créer compte</l>
+      </p>
+
+      <div class="register-form" x-data="BaselineLogin()" x-init="mounted()">
+        {%- assign formId = 'RegisterForm' -%}
+        {% form 'create_customer', id: formId %}
+          {% render 'form-status', form: form, form_id: formId, section_color: 'primary' %}
+
+          <label for="FirstName" class="block mt-4"> {{ 'customer.register.first_name' | t }} * </label>
+          <input
+            type="text"
+            class="w-full py-1 bg-transparent border-b-text border-current"
+            name="customer[first_name]"
+            id="FirstName"
+            {% unless form.errors %}
+              autofocus
+            {% endunless %}
+            {% if form.first_name %}
+              value="{{ form.first_name }}"
+            {% endif %}
+          >
+
+          <label for="LastName" class="block mt-4"> {{ 'customer.register.last_name' | t }}</label>
+          <input
+            type="text"
+            class="w-full py-1 bg-transparent border-b-text border-current"
+            name="customer[last_name]"
+            id="LastName"
+            {% if form.last_name %}
+              value="{{ form.last_name }}"
+            {% endif %}
+          >
+
+          <label for="Email" class="block mt-4"> {{ 'customer.register.email' | t }} * </label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="Email"
+            class="w-full py-1 bg-transparent border-b-text border-current {% if form.errors contains 'email' %}border-theme-color{% endif %}"
+            value="{% if form.email %}{{ form.email }}{% endif %}"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+          >
+
+          <label for="CreatePassword" class="block mt-4"> {{ 'customer.register.password' | t }} * </label>
+          <input
+            type="password"
+            class="w-full py-1 bg-transparent border-b-text border-current {% if form.errors contains 'password' %}border-theme-color{% endif %}"
+            name="customer[password]"
+            id="CreatePassword"
+          >
+
+          <div id="gender-wrapper" class="clearfix large_form select-input">
+            <label for="gender" class="label">Gender</label>
+            <select id="gender" name="customer[note][Gender]" value="">
+              <option value="MAN">Man</option>
+              <option value="WOMAN">Woman</option>
+            </select>
+          </div>
+
+          <div id="birthday-wrapper" class="clearfix large_form">
+            <label for="birthday" class="label">Birthday</label>
+            <input type="date" value="" name="customer[note][Birthday]" id="birthday" class="text" size="30">
+          </div>
+
+          <div id="accepts_marketing" class="flex">
+            <input type="checkbox" name="customer[accepts_marketing]" checked="checked" value="true" id="marketing">
+            <label for="marketing" style="font-weight:normal">I want to receive the newsletter.</label>
+          </div>
+
+          <div class="mt-4">
+            <input type="submit" value="{{ 'customer.register.submit' | t }}" class="button">
+          </div>
+          {% comment %}
+            <div class="mt-8 md:flex md:justify-between">
+              {%- assign text = 'customer.login.sign_in' | t -%}
+              {%-
+                render 'link-underline',
+                section_color: 'primary',
+                text: text,
+                link: routes.account_login_url,
+              -%}
+            </div>
+          {% endcomment %}
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>
