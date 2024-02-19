@@ -1,0 +1,60 @@
+<div class="newsletter-registration-form">
+  {% form 'customer' %}
+    {% if form.errors and template.suffix != 'contact' %}
+      {{ form.errors | default_errors }}
+    {% endif %}
+
+    {% if form.posted_successfully? %}
+      <p class="user-registred-correct">{{ 'general.newsletter_form.confirmation' | t }}</p>
+    {% else %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+
+      <div class="grid gr-2 newsletter-gr-ipt fs-12">
+        <input
+          class="cell nth-1"
+          autocomplete="name"
+          type="text"
+          id="ContactForm-first_name"
+          name="contact[{{ 'customer.register.first_name' | t }}]"
+          value="{% if form.first_name %}{{ form.first_name }}{% elsif customer %}{{ customer.first_name }}{% endif %}"
+          placeholder="{{ 'customer.register.first_name' | t }}"
+        >
+
+        <input
+          class="cell nth-2"
+          type="email"
+          name="contact[email]"
+          id="Email-{{ section.id }}"
+          value="{% if customer.email != blank %}{{ customer.email }}{% endif %}"
+          placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+          autocorrect="off"
+          autocapitalize="off"
+        >
+        <div class="select-input cell nth-3 relative">
+          <select id="gender" name="customer[note][Gender]" value="">
+            <option value="MAN">Man</option>
+            <option value="WOMAN">Woman</option>
+          </select>
+        </div>
+
+        <input
+          type="date"
+          name="customer[note][Birthday]"
+          id="birthday"
+          class="text cell nth-4 text-left"
+          size="30"
+          data-placeholder="Birthday"
+        >
+      </div>
+
+      <button
+        class="uppercase fs-12"
+        type="submit"
+        name="commit"
+        id="Subscribe"
+      >
+        <span>{{ 'general.newsletter_form.submit' | t }} ></span>
+      </button>
+    {% endif %}
+  {% endform %}
+</div>
