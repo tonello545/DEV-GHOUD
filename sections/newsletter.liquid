@@ -1,0 +1,28 @@
+<section class="section-newsletter-rg">
+<h3 class="text-center">{{ section.settings.section_title }}</h3>
+  
+<p class="text-center">{{ section.settings.subheading }}</p>
+  
+{% render 'newsletter'%}
+
+{% schema %}
+  {
+    "name": "Newsletter",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Titolo"
+      },
+      {
+        "type": "richtext",
+        "id": "subheading",
+        "label": "Contenuto"
+      }
+    ],
+    "presets": [{
+      "name": "Newsletter"
+    }]
+  }
+{% endschema %}
+</section>

@@ -1,0 +1,43 @@
+<div class="h-cont">
+<section class="section-newsletter-rg section-newsletter-landing-rg">
+<img class="w-100 nomobile" src="{{ section.settings.banner_d | img_url: 'master' }}" >
+<img class="w-100 nodesktop" src="{{ section.settings.banner_m | img_url: 'master' }}" >
+<div class="form-container">
+<h3 class="text-center">{{ section.settings.section_title }}</h3> 
+<p class="text-center">{{ section.settings.subheading }}</p>
+  
+{% render 'newsletter'%}
+</div>
+</section>
+</div>
+{% schema %}
+  {
+    "name": "Newsletter Landing",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "banner_d",
+        "label": "Banner desktop"
+      },
+      {
+        "type": "image_picker",
+        "id": "banner_m",
+        "label": "Banner mobile"
+      },
+      {
+        "type": "text",
+        "id": "section_title",
+        "label": "Titolo"
+      },
+      {
+        "type": "text",
+        "id": "subheading",
+        "label": "Contenuto"
+      }
+    ],
+    "presets": [{
+      "name": "Newsletter Landing"
+    }]
+  }
+{% endschema %}
+</section>

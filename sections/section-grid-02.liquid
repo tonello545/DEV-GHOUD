@@ -1,0 +1,71 @@
+<section class="section-grid-02 grid hm-cont">
+  <a class="cell" href="{{ section.settings.link_01 }}">
+      <img class="w-100" src="{{ section.settings.img_main_desktop | img_url: 'master' }}" >
+    <div>
+     <h3>{{ section.settings.title }}</h3>
+       <img src="{{ 'taglio.svg' | asset_url }}" class="taglio-collection-page" >
+       <p>{{ section.settings.subtitle }}</p>
+    </div>
+  </a>
+  
+  <a class="cell" href="{{ section.settings.link_02 }}">
+      <img class="w-100" src="{{ section.settings.img_main_desktop2 | img_url: 'master' }}" >
+     <div>
+       <h3>{{ section.settings.title2 }}</h3>
+         <img src="{{ 'taglio.svg' | asset_url }}" class="taglio-collection-page" >
+         <p>{{ section.settings.subtitle }}</p>
+      </div>
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "section-grid-02",
+  "settings": [
+    {
+      "type": "url",
+      "id": "link_01",
+      "label": "Link 01"
+    },
+    {
+      "type": "url",
+      "id": "link_02",
+      "label": "Link 02"
+    },
+     {
+          "id": "img_main_desktop",
+          "type": "image_picker",
+          "label": "Image desktop"
+        },
+     {
+          "id": "img_main_desktop2",
+          "type": "image_picker",
+          "label": "Image desktop"
+        },
+  
+     {
+          "id": "title",
+          "type": "text",
+          "label": "Title banner"
+        },
+     {
+          "id": "title2",
+          "type": "text",
+          "label": "Title banner2"
+        },
+     {
+          "id": "subtitle",
+          "type": "text",
+          "label": "Subtitle"
+        },
+     {
+          "id": "subtitle2",
+          "type": "text",
+          "label": "Subtitle2"
+        }
+  ],
+    "presets": [{
+      "name": "section-grid-02"
+  }]
+}
+{% endschema %}

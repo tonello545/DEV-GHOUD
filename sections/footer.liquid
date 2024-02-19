@@ -1,0 +1,375 @@
+{%- liquid
+  assign section_color = 'footer'
+  assign locale_selector = false
+  assign country_selector = false
+  assign grid_cols = 12
+
+  if section.settings.show_country_selector and localization.available_countries.size > 1
+    assign country_selector = true
+  endif
+  if section.settings.show_locale_selector and shop.published_locales.size > 1
+    assign locale_selector = true
+  endif
+
+  assign show_grid_border = section.settings.show_grid_border
+  assign block_count = section.blocks.size | plus: 1
+  if section.settings.show_social
+    assign block_count = block_count | plus: 1
+  endif
+  if section.settings.text_text != blank
+    assign block_count = block_count | plus: 1
+  endif
+
+  case block_count
+    when 2
+      assign desktop_col_span = 'lg:col-span-6'
+    when 3
+      assign desktop_col_span = 'lg:col-span-4'
+    when 4
+      assign desktop_col_span = 'lg:col-span-3'
+    when 5
+      assign grid_cols = 10
+      assign desktop_col_span = 'lg:col-span-2'
+  endcase
+
+  assign desktop_grid_class = 'lg:grid-cols-' | append: grid_cols
+-%}
+
+<style>
+  :root {
+    --color-footer-accent: var(--color-{{ section.settings.color_scheme }}-accent);
+    --color-footer-text: var(--color-{{ section.settings.color_scheme }}-text);
+    --color-footer-background: var(--color-{{ section.settings.color_scheme }}-background);
+    --color-footer-background-hex: var(--color-{{ section.settings.color_scheme }}-background-hex);
+    --color-footer-meta: var(--color-{{ section.settings.color_scheme }}-meta);
+    --color-footer-text--overlay: var(--color-{{ section.settings.color_scheme }}-text--overlay);
+    --color-footer-accent--overlay: var(--color-{{ section.settings.color_scheme }}-accent--overlay);
+    --color-footer-accent-placeholder: var(--color-{{ section.settings.color_scheme }}-text-placeholder);
+  }
+</style>
+
+<footer>
+  <div class="hs-gr gr-4 l-en">
+    <div>
+      <h5>GHŌUD</h5>
+      <a href="/pages/about">ABOUT</a>
+      <a href="/account">MY ACCOUNT</a>
+      <a href="/pages/faq">FAQ</a>
+    </div>
+    <div>
+      <h5>ONLINE SHOP</h5>
+      <a href="/pages/terms-and-conditions">TERMS AND CONDITIONS</a>
+      <a href="/pages/delivery">DELIVERY</a>
+      <a href="/pages/return">RETURN</a>
+      <a href="/pages/cookie-policy">COOKIE POLICY</a>
+    </div>
+    <div>
+      <h5>MAY WE HELP YOU?</h5>
+      <a href="/pages/contact-us">CONTACT US</a>
+      <a href="mailto:online@ghoud.com">ONLINE@GHOUD.COM</a>
+      <a href="https://heavy-studio.com" target="_blank">GHŌUD / IT05543220288</a>
+      <a href="https://heavy-studio.com" target="_blank">POWERED BY <span class="">HEAVY</span></a>
+    </div>
+    <div>
+      <h5>FOLLOW US</h5>
+      <a href="https://www.instagram.com/ghoudvenice/" target="_blank">INSTAGRAM</a>
+      <a href="https://www.facebook.com/ghoudvenice/" target="_blank">FACEBOOOK</a>
+      <a href="https://www.tiktok.com/@ghoudvenice" target="_blank">TIK TOK</a>
+    </div>
+  </div>
+
+  <div class="hs-gr gr-4 l-it">
+    <div>
+      <h5>GHŌUD</h5>
+      <a href="/it/pages/about">ABOUT</a>
+      <a href="/it/account">MY ACCOUNT</a>
+      <a href="/it/pages/faq">FAQ</a>
+    </div>
+    <div>
+      <h5>ONLINE SHOP</h5>
+      <a href="/it/pages/terms-and-conditions">TERMINI E CONDIZIONI</a>
+      <a href="/it/pages/delivery">SPEDIZIONE</a>
+      <a href="/it/pages/return">RESO</a>
+      <a href="/it/pages/cookie-policy">COOKIE POLICY</a>
+    </div>
+    <div>
+      <h5>MAY WE HELP YOU?</h5>
+      <a href="/it/pages/contact-us">CONTATTI</a>
+      <a href="mailto:online@ghoud.com">ONLINE@GHOUD.COM</a>
+      <a href="https://heavy-studio.com" target="_blank">GHŌUD / IT05543220288</a>
+      <a href="https://heavy-studio.com" target="_blank">POWERED BY <span class="">HEAVY</span></a>
+    </div>
+    <div>
+      <h5>FOLLOW US</h5>
+      <a href="https://www.instagram.com/ghoudvenice/" target="_blank">INSTAGRAM</a>
+      <a href="https://www.facebook.com/ghoudvenice/" target="_blank">FACEBOOOK</a>
+      <a href="https://www.tiktok.com/@ghoudvenice" target="_blank">TIK TOK</a>
+    </div>
+  </div>
+
+  <div class="hs-gr gr-4 l-fr">
+    <div>
+      <h5>GHŌUD</h5>
+      <a href="/fr/pages/about">ABOUT</a>
+      <a href="/fr/account">MY ACCOUNT</a>
+      <a href="/fr/pages/faq">FAQ</a>
+    </div>
+    <div>
+      <h5>ONLINE SHOP</h5>
+      <a href="/fr/pages/terms-and-conditions">TERMES ET CONDITIONS</a>
+      <a href="/fr/pages/delivery">LIVRAISON</a>
+      <a href="/fr/pages/return">RETOUR</a>
+      <a href="/fr/pages/cookie-policy">POLITIQUE DE COOKIES</a>
+    </div>
+    <div>
+      <h5>MAY WE HELP YOU?</h5>
+      <a href="/fr/pages/contact-us">CONTACTS</a>
+      <a href="mailto:online@ghoud.com">ONLINE@GHOUD.COM</a>
+      <a href="https://heavy-studio.com" target="_blank">GHŌUD / IT05543220288</a>
+      <a href="https://heavy-studio.com" target="_blank">POWERED BY <span class="">HEAVY</span></a>
+    </div>
+    <div>
+      <h5>FOLLOW US</h5>
+      <a href="https://www.instagram.com/ghoudvenice/" target="_blank">INSTAGRAM</a>
+      <a href="https://www.facebook.com/ghoudvenice/" target="_blank">FACEBOOOK</a>
+      <a href="https://www.tiktok.com/@ghoudvenice" target="_blank">TIK TOK</a>
+    </div>
+  </div>
+</footer>
+
+<img class="scrollTop scroll-top-function nomobile" src="{{ 'scrolltotop.svg' | asset_url }}">
+<script>
+  var coll = document.getElementsByClassName("footer-collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
+</script>
+
+<script>
+  var cont = document.getElementsByClassName("footer-content");
+  var i;
+
+  for (i = 0; i < cont.length; i++) {
+    cont[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  }
+</script>
+<script>
+  $(document).ready(function() {
+    /******************************
+        BOTTOM SCROLL TOP BUTTON
+     ******************************/
+
+    // declare variable
+    var scrollTop = $(".scrollTop");
+
+    $(window).scroll(function() {
+      // declare variable
+      var topPos = $(this).scrollTop();
+
+      // if user scrolls down - show scroll to top button
+      if (topPos > 100) {
+        $(scrollTop).css("opacity", "1");
+
+      } else {
+        $(scrollTop).css("opacity", "0");
+      }
+
+    }); // scroll END
+
+    //Click event to scroll to top
+    $(scrollTop).click(function() {
+      $('html, body').animate({
+        scrollTop: 0
+      }, 1400);
+      return false;
+
+    }); // click() scroll top EMD
+
+
+  }); // ready() END
+</script>
+
+{% if section.settings.logo != blank %}
+  <style>
+    .footer-logo-image {
+      display: block;
+      max-width: {{ section.settings.logo_max_width }}px;
+    }
+  </style>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "min": 50,
+      "max": 250,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo width",
+      "default": 100
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons"
+    },
+    {
+      "type": "header",
+      "content": "Language Selector",
+      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "Show language selector",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Country/region selector",
+      "info": "To add a country/region, go to your [payment settings.](/admin/settings/payments)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "Show country/region selector",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "text",
+      "id": "text_heading",
+      "label": "Heading"
+    },
+    {
+      "id": "text_text",
+      "type": "richtext",
+      "label": "Text",
+      "default": "<p>Use this to add additional information about your store, e.g. address / contact details.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Social"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social media"
+    },
+    {
+      "type": "text",
+      "id": "social_title",
+      "label": "Social heading"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show newsletter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_section_title",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "newsletter_subheading",
+      "label": "Subheading",
+      "default": "<p>Receive special offers and first look at new products.</p>"
+    },
+    {
+      "type": "select",
+      "id": "newsletter_color_scheme",
+      "label": "Newsletter color scheme",
+      "options": [
+          { "value": "primary", "label": "Primary"},
+          { "value": "secondary", "label": "Secondary"},
+          { "value": "tertiary", "label": "Tertiary"}
+      ],
+      "default":   "secondary"
+    },
+    {
+      "type":      "header",
+      "content":   "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_grid_border",
+      "label": "Show grid border",
+      "default": false
+    },
+    {
+      "type":      "header",
+      "content":   "Colors"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+          { "value": "primary", "label": "Primary"},
+          { "value": "secondary", "label": "Secondary"},
+          { "value": "tertiary", "label": "Tertiary"}
+      ],
+      "default":   "primary"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "main_linklist",
+          "label": "Menu",
+          "default": "footer",
+          "info": "This menu won't show dropdown items"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_heading",
+          "label": "Show heading",
+          "default": true
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

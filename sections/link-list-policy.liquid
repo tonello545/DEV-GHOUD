@@ -1,0 +1,123 @@
+<section class="policy-page flex">
+  <section class="link-list-policy">
+    <h3 class="fw-800">HELP</h3>
+    {% if section.settings.link_01 and section.settings.title_01 -%}
+      <h3>
+        <a class="block relative" href="{{ section.settings.link_01}}">{{ section.settings.title_01 }}</a>
+      </h3>
+    {%- endif %}
+    {% if section.settings.link_02 and section.settings.title_02 -%}
+      <h3>
+        <a class="block relative" href="{{ section.settings.link_02}}">{{ section.settings.title_02 }}</a>
+      </h3>
+    {%- endif %}
+    {% if section.settings.link_03 and section.settings.title_03 -%}
+      <h3>
+        <a class="block relative" href="{{ section.settings.link_03}}">{{ section.settings.title_03 }}</a>
+      </h3>
+    {%- endif %}
+    {% if section.settings.link_04 and section.settings.title_04 -%}
+      <h3>
+        <a class="block relative" href="{{ section.settings.link_04}}">{{ section.settings.title_04 }}</a>
+      </h3>
+    {%- endif %}
+    {% if section.settings.link_05 and section.settings.title_05 -%}
+      <h3>
+        <a class="block relative" href="{{ section.settings.link_05}}">{{ section.settings.title_05 }}</a>
+      </h3>
+    {%- endif %}
+    {% if section.settings.link_06 and section.settings.title_06 -%}
+      <h3>
+        <a class="block relative" href="{{ section.settings.link_06}}">{{ section.settings.title_06 }}</a>
+      </h3>
+    {%- endif %}
+    {% if section.settings.link_07 and section.settings.title_07 -%}
+      <h3>
+        <a class="block relative" href="{{ section.settings.link_07}}">{{ section.settings.title_07 }}</a>
+      </h3>
+    {%- endif %}
+  </section>
+  <section class="content page text-{{ section_color }}-text bg-{{ section_color }}-background border-t-grid border-grid-color">
+    {{ page.content }}
+  </section>
+</section>
+{% schema %}
+{
+  "name": "link-list-policy",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_01",
+      "label": "Title 01"
+    },
+    {
+      "type": "url",
+      "id": "link_01",
+      "label": "Link 01"
+    },
+    {
+      "type": "text",
+      "id": "title_02",
+      "label": "Title 02"
+    },
+    {
+      "type": "url",
+      "id": "link_02",
+      "label": "Link 02"
+    },
+    {
+      "type": "text",
+      "id": "title_03",
+      "label": "Title 03"
+    },
+    {
+      "type": "url",
+      "id": "link_03",
+      "label": "Link 03"
+    },
+    {
+      "type": "text",
+      "id": "title_04",
+      "label": "Title 04"
+    },
+    {
+      "type": "url",
+      "id": "link_04",
+      "label": "Link 04"
+    },
+    {
+      "type": "text",
+      "id": "title_05",
+      "label": "Title 05"
+    },
+    {
+      "type": "url",
+      "id": "link_05",
+      "label": "Link 05"
+    },
+    {
+      "type": "text",
+      "id": "title_06",
+      "label": "Title 06"
+    },
+    {
+      "type": "url",
+      "id": "link_06",
+      "label": "Link 06"
+    },
+    {
+      "type": "text",
+      "id": "title_07",
+      "label": "Title 07"
+    },
+    {
+      "type": "url",
+      "id": "link_07",
+      "label": "Link 07"
+    }
+  ],
+    "presets": [{
+      "name": "link-list-policy"
+  }]
+}
+{% endschema %}

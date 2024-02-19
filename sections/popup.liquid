@@ -1,0 +1,58 @@
+{%- assign section_color = section.settings.color_scheme -%}
+{% unless section.settings.display_mode == 'disabled' %}
+<section id="popup" x-data="ThemeSection_{{ section.id }}()"
+         class="popup-section popup fixed right-0 bottom-0 left-0 pt-8 lg:pt-0 bg-{{ section_color }}-background text-{{ section_color }}-text z-70 border-t-grid border-grid-color transition-transform duration-300 in-expo transform translate-y-0-important"  data-section-type="popup"   data-section-id="{{ section.id }}">
+  <button id="close-popup" class="block p-1 w-8 ml-auto absolute top-2 right-2">
+    <span class="visually-hidden">{{ 'general.accessibility.close_modal' | t }}</span>
+    <span class="inline-block w-5 h-5">{% render 'icon-close' %}</span>
+  </button>
+  <div class="real-container">
+  <h3 class="text-center">{{ section.settings.section_title }}</h3>
+  <p class="text-center">{{ section.settings.subheading }}</p>
+  {% render 'newsletter'%}
+  </div>
+</section>
+{% endunless %}
+
+<script>
+ window.addEventListener("load", function(){
+    setTimeout(
+        function open(event){
+            document.querySelector("#popup").style.display = "block";
+        },
+        2000 
+    )
+});
+
+document.querySelector("#close-popup").addEventListener("click", function(){
+    document.querySelector("#popup").style.display = "none";
+});
+</script>
+{% schema %}
+{
+  "name": "Popup",
+  "class": "relative z-60",
+  "settings": [
+    {
+       "type": "select",
+       "id": "display_mode",
+       "label": "Display mode",
+       "options": [
+          { "value": "disabled", "label": "Disabled"},
+          { "value": "enabled", "label": "Enabled"}
+       ],
+       "default": "disabled"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Titolo"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Contenuto"
+    }
+  ]
+}
+{% endschema %}

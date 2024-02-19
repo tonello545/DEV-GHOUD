@@ -1,0 +1,64 @@
+{%- assign section_color = section.settings.color_scheme -%}
+
+<section>
+  <div>
+    <div>
+      {%- if section.settings.title -%}
+        {% comment %}<h2 class="font-heading text-2xl mb-4">{{ section.settings.title }}</h2>{% endcomment %}
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <div>
+          {{ section.settings.subheading }}
+        </div>
+      {%- endif -%}
+
+      {{ section.settings.custom_liquid }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom Liquid",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title",
+      "default": "Custom Liquid"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Sub-heading",
+      "default": "Sub-heading goes here"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Custom Liquid"
+    },
+    {
+      "type": "header",
+      "content": "Color"
+    },
+    {
+       "type": "select",
+       "id": "color_scheme",
+       "label": "Color scheme",
+       "options": [
+          { "value": "primary", "label": "Primary"},
+          { "value": "secondary", "label": "Secondary"},
+          { "value": "tertiary", "label": "Tertiary"}
+       ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Liquid",
+      "category": "Advanced Layout"
+    }
+  ]
+}
+{% endschema %}
